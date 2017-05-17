@@ -1,2 +1,2 @@
 # SearchWP Russian Stemmer
-Russian stemmer for WordPress plugin [SearchWP](https://searchwp.com/)
+Russian keyword stemmer Extension for WordPress plugin [SearchWP](https://searchwp.com/)
