@@ -1,0 +1,1 @@
+# searchwp-stemmer-russian
