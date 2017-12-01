@@ -169,3 +169,5 @@ class SearchWP_Russian_Stemmer_Wrapper {
 }
 
 new SearchWP_Russian_Stemmer_Wrapper();
+
+// eof;
