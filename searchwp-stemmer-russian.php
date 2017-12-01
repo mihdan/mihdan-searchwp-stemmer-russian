@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: SearchWP Russian Stemmer
+Plugin Name: Mihdan: SearchWP Russian Stemmer
 Plugin URI: https://searchwp.com/
 Description: Russian keyword stemming
-Version: 1.0.0
+Version: 1.0.1
 Author: Mikhail Kobzarev
 Author URI: https://www.kobzarev.com/
 
