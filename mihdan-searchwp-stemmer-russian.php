@@ -3,7 +3,7 @@
 Plugin Name: Mihdan: SearchWP Russian Stemmer
 Plugin URI: https://searchwp.com/
 Description: Russian keyword stemming
-Version: 1.0.1
+Version: 1.0.2
 Author: Mikhail Kobzarev
 Author URI: https://www.kobzarev.com/
 
@@ -31,60 +31,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'SEARCHWP_STEMMER_RUSSIAN_VERSION' ) ) {
-	define( 'SEARCHWP_STEMMER_RUSSIAN_VERSION', '1.0.0' );
+	define( 'SEARCHWP_STEMMER_RUSSIAN_VERSION', '1.0.2' );
 }
-
-/**
- * Instantiate the updater
- */
-if ( ! class_exists( 'SWP_Stemmer_Russian_Updater' ) ) {
-	// load our custom updater
-	include_once( dirname( __FILE__ ) . '/vendor/updater.php' );
-}
-
-/**
- * Set up the updater
- * 
- * @return bool|SWP_Stemmer_Russian_Updater
- */
-function searchwp_stemmer_swedish_update_check(){
-
-	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-		return false;
-	}
-
-	// environment check
-	if ( ! defined( 'SEARCHWP_PREFIX' ) ) {
-		return false;
-	}
-
-	if ( ! defined( 'SEARCHWP_EDD_STORE_URL' ) ) {
-		return false;
-	}
-
-	if ( ! defined( 'SEARCHWP_STEMMER_RUSSIAN_VERSION' ) ) {
-		return false;
-	}
-
-	// retrieve stored license key
-	$license_key = trim( get_option( SEARCHWP_PREFIX . 'license_key' ) );
-	$license_key = sanitize_text_field( $license_key );
-
-	// instantiate the updater to prep the environment
-	$searchwp_stemmer_russian_updater = new SWP_Stemmer_Russian_Updater( SEARCHWP_EDD_STORE_URL, __FILE__, array(
-			'item_id' 	=> 6271800000000000,
-			'version'   => SEARCHWP_STEMMER_RUSSIAN_VERSION,
-			'license'   => $license_key,
-			'item_name' => 'Russian Keyword Stemmer',
-			'author'    => 'Mikhail Kobzarev',
-			'url'       => site_url(),
-		)
-	);
-
-	return $searchwp_stemmer_russian_updater;
-}
-
-//add_action( 'admin_init', 'searchwp_stemmer_russian_update_check' );
 
 if ( ! class_exists( 'SearchWP_Russian_Stemmer' ) ) {
 	include_once( dirname( __FILE__ ) . '/vendor/class.russian-stemmer.php' );
@@ -105,9 +53,9 @@ class SearchWP_Russian_Stemmer_Wrapper {
 
 		// add our custom stemmer
 		add_filter( 'searchwp_custom_stemmer', array( $this, 'russian_stemmer' ) );
-		
+
 		// добавить свои стоп слова
-		add_filter( 'searchwp_common_words', array( $this, 'russian_common_words' ) );
+		add_filter( 'searchwp_stopwords', array( $this, 'russian_common_words' ) );
 
 	}
 
